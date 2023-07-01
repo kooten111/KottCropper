@@ -11,7 +11,7 @@ counter_dict = {}
 
 @app.route('/', methods=['GET'])
 def display_image():
-    image_files = os.listdir('static/images')  # path to the directory with images
+    image_files = os.listdir('static/images')
     return render_template('index.html', images=image_files)
 
 @app.route('/crop', methods=['POST'])

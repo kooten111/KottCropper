@@ -23,3 +23,6 @@ Download the repo
 Run the app
     
     python Cropper.py
+
+## Todo
+- [ ] Flipping the aspect ratio does not work as intended
