@@ -20,9 +20,15 @@ Download the repo
 
     https://github.com/kooten111/KottCropper
 
+Go to \Static\cropped_images and put the images you want to crop there. 
+
 Run the app
     
     python Cropper.py
+
+Go to `localhost:5000` in your browser and start cropping.
+
+Your cropped images will be in \Static\cropped_images\cropped
 
 ## Todo
 - [ ] Flipping the aspect ratio does not work as intended
