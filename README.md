@@ -5,8 +5,6 @@ A simple tool for cropping images to a specific aspect ratio, useful for croppin
 
 Birme.net lacks the ability to crop only specific parts of an image, so I made this tool to do that.
 
-I can bearly code so this is probably a mess, but it works.
-
 ![Screenshot](Readme/example_img.png)
 
   
@@ -32,3 +30,6 @@ Your cropped images will be in \Static\cropped_images\cropped
 
 ## Todo
 - [ ] Flipping the aspect ratio does not work as intended
+
+## Credit
+https://github.com/fengyuanchen/cropperjs I basically just used this library and made a simple flask app around it.
