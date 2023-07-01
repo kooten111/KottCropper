@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Cropper</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='script/cropper.css') }}">
+    <script src="{{ url_for('static', filename='script/jquery-3.6.0.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='script/cropper.js') }}"></script>
+</head>
+<body>
+    <div class="sidebar-left">
+		<div id="left">
+            <button id="prev">Prev</button>
+            <button id="next">Next</button>
+            <button id="crop">Crop</button>
+			<select id="aspectRatio">
+			    <option value="1">1:1</option>
+				<option value="0.5625">9:16</option>
+				<option value="0.75">3:4</option>
+				<option value="1.5">3:2</option>
+				<option value="2">2:1</option>
+				<option value="0.5">1:2</option>
+                <option value="1.77777777778">16:9</option>
+                <option value="1.333333333333333">4:3</option>
+                <option value="0.6666666666666667">2:3</option>
+				
+			</select>
+            <h3>Shortcuts:</h3>
+            <p>Right/Left arrow = Previous/Next image</p>
+            <p>Up/Down arrow = Flip the aspect ratio</p>
+            <p>Enter = Crop current selection</p>
+            <p>Page UP/Down = Change the selected aspect ratio</p>
+    </div>
+	</div>
+
+    <div class="content">
+        <div class="image">
+            {% for image in images %}
+                <img class="image-crop" src="{{ url_for('static', filename='images/' + image) }}">
+            {% endfor %}
+        </div>
+    </div>
+    <div class="sidebar-right">
+        <div id="lastCrops"></div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
