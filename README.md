@@ -18,7 +18,7 @@ Install requirements
 
 Download the repo
 
-    git clone ---
+    https://github.com/kooten111/KottCropper
 
 Run the app
     
