@@ -33,21 +33,21 @@ $(document).ready(function() {
 
   $("#prev").click(function(){
     cropper.clear();
-    currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : images.length - 1;
     cropper.destroy();
-    images.forEach(img => img.style.display = 'none');
+    images[currentImageIndex].style.display = 'none';
+    currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : images.length - 1;
     images[currentImageIndex].style.display = 'block';
     cropper = initCropper(images[currentImageIndex], currentAspectRatio);
-  });
+});
 
-  $("#next").click(function(){
+$("#next").click(function(){
     cropper.clear();
-    currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
     cropper.destroy();
-    images.forEach(img => img.style.display = 'none');
+    images[currentImageIndex].style.display = 'none';
+    currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
     images[currentImageIndex].style.display = 'block';
-    cropper = initCropper(images[currentImageIndex], $("#aspectRatio").val());
-  });
+    cropper = initCropper(images[currentImageIndex], currentAspectRatio);
+});
 
 $("#crop").click(function(){
     var imgsrc = cropper.getCroppedCanvas().toDataURL();
