@@ -26,9 +26,13 @@ $(document).ready(function() {
   $("#setCustomRatio").click(function() {
     var customRatioWidth = $("#customRatioWidth").val();
     var customRatioHeight = $("#customRatioHeight").val();
-    currentAspectRatio = customRatioWidth / customRatioHeight;
-    cropper.destroy();
-    cropper = initCropper(images[currentImageIndex], currentAspectRatio);
+    if(customRatioWidth > 0 && customRatioHeight > 0) {
+      currentAspectRatio = customRatioWidth / customRatioHeight;
+      cropper.destroy();
+      cropper = initCropper(images[currentImageIndex], currentAspectRatio);
+    } else {
+      alert("Please enter valid values for width and height");
+    }
   });
 
   $("#prev").click(function(){
