@@ -18,7 +18,7 @@ Download the repo
 
     git clone https://github.com/kooten111/KottCropper
 
-Go to \Static\cropped_images and put the images you want to crop there. 
+Go to \Static\images and put the images you want to crop there. 
 
 Run the app
     
