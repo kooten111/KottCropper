@@ -23,9 +23,10 @@ $(document).ready(function() {
     cropper.destroy();
     cropper = initCropper(images[currentImageIndex], currentAspectRatio);
   });
-  $("#setCustomRatio").click(function() {
+  $("#customRatioWidth, #customRatioHeight").on("input", function() {
     var customRatioWidth = $("#customRatioWidth").val();
     var customRatioHeight = $("#customRatioHeight").val();
+
     if(customRatioWidth > 0 && customRatioHeight > 0) {
       currentAspectRatio = customRatioWidth / customRatioHeight;
       cropper.destroy();
