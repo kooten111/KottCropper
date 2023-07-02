@@ -23,6 +23,13 @@ $(document).ready(function() {
     cropper.destroy();
     cropper = initCropper(images[currentImageIndex], currentAspectRatio);
   });
+  $("#setCustomRatio").click(function() {
+    var customRatioWidth = $("#customRatioWidth").val();
+    var customRatioHeight = $("#customRatioHeight").val();
+    currentAspectRatio = customRatioWidth / customRatioHeight;
+    cropper.destroy();
+    cropper = initCropper(images[currentImageIndex], currentAspectRatio);
+  });
 
   $("#prev").click(function(){
     cropper.clear();
