@@ -9,8 +9,9 @@ body {
 .content {
 	background-color: #666;
     flex-grow: 1;
-    padding: 20px;
-	height: auto;
+    margin-top: 20px;
+    height: 100vh;
+    width: 100vw;
 }
 
 .image {
