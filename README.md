@@ -29,7 +29,7 @@ Go to `localhost:5000` in your browser and start cropping.
 Your cropped images will be in \Static\cropped_images\cropped
 
 ## Todo
-- [ ] Flipping the aspect ratio does not work as intended
+- [X] Flipping the aspect ratio does not work as intended
 
 ## Credit
 https://github.com/fengyuanchen/cropperjs I basically just used this library and made a simple flask app around it.
