@@ -18,10 +18,29 @@ $(document).ready(function() {
   images[0].style.display = 'block';
   cropper = initCropper(images[0], $("#aspectRatio").val());
 
+  const ratios = {
+    "1": [1, 1],
+    "0.5625": [9, 16],
+    "0.75": [3, 4],
+    "1.5": [3, 2],
+    "2": [2, 1],
+    "0.5": [1, 2],
+    "1.77777777778": [16, 9],
+    "1.333333333333333": [4, 3],
+    "0.6666666666666667": [2, 3]
+  };
+  
   $("#aspectRatio").change(function(){
-    currentAspectRatio = $("#aspectRatio").val();
-    cropper.destroy();
-    cropper = initCropper(images[currentImageIndex], currentAspectRatio);
+      currentAspectRatio = $("#aspectRatio").val();
+      cropper.destroy();
+      cropper = initCropper(images[currentImageIndex], currentAspectRatio);
+  
+      // Update the custom ratio inputs
+      var customRatio = ratios[currentAspectRatio];
+      if (customRatio) {
+          $("#customRatioWidth").val(customRatio[0]);
+          $("#customRatioHeight").val(customRatio[1]);
+      }
   });
   $("#customRatioWidth, #customRatioHeight").on("input", function() {
     var customRatioWidth = $("#customRatioWidth").val();
