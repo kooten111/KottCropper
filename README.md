@@ -16,7 +16,7 @@ Install requirements
 
 Download the repo
 
-    https://github.com/kooten111/KottCropper
+    git clone https://github.com/kooten111/KottCropper
 
 Go to \Static\cropped_images and put the images you want to crop there. 
 
