@@ -11,6 +11,9 @@
 </head>
 <body>
     <div class="sidebar-left">
+        <div id="cropper">
+            <h3>KottCropper</h3>
+        </div>
 		<div id="left">
             <button id="prev">Prev</button>
             <button id="next">Next</button>
@@ -27,15 +30,17 @@
                 <option value="0.6666666666666667">2:3</option>
 				
 			</select>
-    <input id="customRatioWidth" type="number" min="1" value="1">
-    <input id="customRatioHeight" type="number" min="1" value="1">
-
+        <input id="customRatioWidth" type="number" min="1" value="1">
+        <input id="customRatioHeight" type="number" min="1" value="1">
+    
+        <div id="shortcuts">
             <h3>Shortcuts:</h3>
             <p>Right/Left arrow = Previous/Next image</p>
             <p>Up/Down arrow = Flip the aspect ratio</p>
             <p>Enter = Crop current selection</p>
             <p>Page UP/Down = Change the selected aspect ratio</p>
-    </div>
+            </div>
+        </div>
 	</div>
 
     <div class="content">
