@@ -17,31 +17,13 @@ $(document).ready(function() {
   images.forEach(img => img.style.display = 'none');
   images[0].style.display = 'block';
   cropper = initCropper(images[0], $("#aspectRatio").val());
-
-  const ratios = {
-    "1": [1, 1],
-    "0.5625": [9, 16],
-    "0.75": [3, 4],
-    "1.5": [3, 2],
-    "2": [2, 1],
-    "0.5": [1, 2],
-    "1.77777777778": [16, 9],
-    "1.333333333333333": [4, 3],
-    "0.6666666666666667": [2, 3]
-  };
   
   $("#aspectRatio").change(function(){
       currentAspectRatio = $("#aspectRatio").val();
       cropper.destroy();
       cropper = initCropper(images[currentImageIndex], currentAspectRatio);
-  
-      // Update the custom ratio inputs
-      var customRatio = ratios[currentAspectRatio];
-      if (customRatio) {
-          $("#customRatioWidth").val(customRatio[0]);
-          $("#customRatioHeight").val(customRatio[1]);
-      }
   });
+
   $("#customRatioWidth, #customRatioHeight").on("input", function() {
     var customRatioWidth = $("#customRatioWidth").val();
     var customRatioHeight = $("#customRatioHeight").val();
@@ -62,18 +44,18 @@ $(document).ready(function() {
     currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : images.length - 1;
     images[currentImageIndex].style.display = 'block';
     cropper = initCropper(images[currentImageIndex], currentAspectRatio);
-});
+  });
 
-$("#next").click(function(){
+  $("#next").click(function(){
     cropper.clear();
     cropper.destroy();
     images[currentImageIndex].style.display = 'none';
     currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
     images[currentImageIndex].style.display = 'block';
     cropper = initCropper(images[currentImageIndex], currentAspectRatio);
-});
+  });
 
-$("#crop").click(function(){
+  $("#crop").click(function(){
     var imgsrc = cropper.getCroppedCanvas().toDataURL();
     $.ajax({
       url: "/crop",
@@ -92,42 +74,57 @@ $("#crop").click(function(){
     });
   });
 
-
-  function invertAspectRatio() {
-    var cropBoxData = cropper.getCropBoxData();
-    currentAspectRatio = cropBoxData.height / cropBoxData.width;
+  function widenAspectRatio() {
+    var customRatioWidth = $("#customRatioWidth").val();
+    var customRatioHeight = $("#customRatioHeight").val();
+    // If current aspect ratio is tall, convert it to wide
+    if (customRatioWidth < customRatioHeight) { 
+        $("#customRatioWidth").val(customRatioHeight);
+        $("#customRatioHeight").val(customRatioWidth);
+    }
+    currentAspectRatio = $("#customRatioWidth").val() / $("#customRatioHeight").val();
     cropper.destroy();
     cropper = initCropper(images[currentImageIndex], currentAspectRatio);
   }
 
-	document.addEventListener('keydown', function(event) {
-	  var key = event.key || event.keyCode;
-	  switch (key) {
+  function tallAspectRatio() {
+    var customRatioWidth = $("#customRatioWidth").val();
+    var customRatioHeight = $("#customRatioHeight").val();
+    // If current aspect ratio is wide, convert it to tall
+    if (customRatioWidth > customRatioHeight) { 
+        $("#customRatioWidth").val(customRatioHeight);
+        $("#customRatioHeight").val(customRatioWidth);
+    }
+    currentAspectRatio = $("#customRatioWidth").val() / $("#customRatioHeight").val();
+    cropper.destroy();
+    cropper = initCropper(images[currentImageIndex], currentAspectRatio);
+  }
+
+  document.addEventListener('keydown', function(event) {
+    var key = event.key || event.keyCode;
+    switch (key) {
       case 'ArrowRight':
-      case 'ArrowLeft':
+        event.preventDefault();
         $('#next').click();
         break;
+      case 'ArrowLeft':
+        event.preventDefault();
+        $('#prev').click();
+        break;
       case 'ArrowDown':
+        event.preventDefault();
+        tallAspectRatio();
+        break;
       case 'ArrowUp':
-        invertAspectRatio();
+        event.preventDefault();
+        widenAspectRatio();
         break;
       case 'Enter':
+        event.preventDefault();
         $('#crop').click();
         break;
-    case 'PageDown':
-      var nextOption = $('#aspectRatio option:selected').next();
-      if (nextOption.length) {
-        $('#aspectRatio').val(nextOption.val()).change();
-      }
-      break;
-    case 'PageUp':
-      var prevOption = $('#aspectRatio option:selected').prev();
-      if (prevOption.length) {
-        $('#aspectRatio').val(prevOption.val()).change();
-      }
-      break;
-    default:
-      break;
-  }
-});
+      default:
+        break;
+    }
+  });
 });
