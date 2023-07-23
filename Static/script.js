@@ -17,6 +17,7 @@ $(document).ready(function() {
   images.forEach(img => img.style.display = 'none');
   images[0].style.display = 'block';
   cropper = initCropper(images[0], $("#aspectRatio").val());
+  cropper.setAspectRatio(1);
   
   $("#aspectRatio").change(function(){
       currentAspectRatio = $("#aspectRatio").val();
