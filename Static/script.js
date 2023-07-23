@@ -8,12 +8,16 @@ $(document).ready(function() {
     return path.split('/').pop();
   }
 
-  function initCropper(img, aspectRatio) {
+  function initCropper(img) {
+    var customRatioWidth = $("#customRatioWidth").val();
+    var customRatioHeight = $("#customRatioHeight").val();
+    var aspectRatio = customRatioWidth / customRatioHeight;
+
     return new Cropper(img, {
       aspectRatio: aspectRatio,
       viewMode: 1
     });
-  }
+}
 
   images.forEach(img => img.style.display = 'none');
   images[0].style.display = 'block';
@@ -40,22 +44,30 @@ $(document).ready(function() {
   });
 
   $("#prev").click(function(){
+    var customRatioWidth = $("#customRatioWidth").val();
+    var customRatioHeight = $("#customRatioHeight").val();
+    var aspectRatio = customRatioWidth / customRatioHeight;
+
     cropper.clear();
     cropper.destroy();
     images[currentImageIndex].style.display = 'none';
     currentImageIndex = (currentImageIndex > 0) ? currentImageIndex - 1 : images.length - 1;
     images[currentImageIndex].style.display = 'block';
-    cropper = initCropper(images[currentImageIndex], currentAspectRatio);
-  });
+    cropper = initCropper(images[currentImageIndex], aspectRatio);
+});
 
-  $("#next").click(function(){
-    cropper.clear();
-    cropper.destroy();
-    images[currentImageIndex].style.display = 'none';
-    currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
-    images[currentImageIndex].style.display = 'block';
-    cropper = initCropper(images[currentImageIndex], currentAspectRatio);
-  });
+$("#next").click(function(){
+  var customRatioWidth = $("#customRatioWidth").val();
+  var customRatioHeight = $("#customRatioHeight").val();
+  var aspectRatio = customRatioWidth / customRatioHeight;
+
+  cropper.clear();
+  cropper.destroy();
+  images[currentImageIndex].style.display = 'none';
+  currentImageIndex = (currentImageIndex < images.length - 1) ? currentImageIndex + 1 : 0;
+  images[currentImageIndex].style.display = 'block';
+  cropper = initCropper(images[currentImageIndex], aspectRatio);
+});
 
   $("#crop").click(function(){
     var imgsrc = cropper.getCroppedCanvas().toDataURL();
