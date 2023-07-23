@@ -34,9 +34,13 @@
 
     <div class="content">
         <div class="image">
-            {% for image in images %}
-                <img class="image-crop" src="{{ url_for('static', filename='images/' + image) }}">
-            {% endfor %}
+            {% if images is none %}
+                <p>No images available.</p>
+            {% else %}
+                {% for image in images %}
+                    <img class="image-crop" src="/images/{{ image }}">
+                {% endfor %}
+            {% endif %}
         </div>
     </div>
     <div class="sidebar-right">

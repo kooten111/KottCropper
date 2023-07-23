@@ -19,7 +19,7 @@ $(document).ready(function() {
   images[0].style.display = 'block';
   cropper = initCropper(images[0], $("#aspectRatio").val());
   cropper.setAspectRatio(1);
-  
+
   $("#aspectRatio").change(function(){
       currentAspectRatio = $("#aspectRatio").val();
       cropper.destroy();
@@ -66,7 +66,7 @@ $(document).ready(function() {
       contentType: 'application/json;charset=UTF-8',
       success: function(data) {
           var img = $('<img>'); 
-          img.attr('src', 'static/cropped_images/' + data.new_filename);
+          img.attr('src', 'cropped_images/' + data.new_filename);
           img.prependTo('#lastCrops');
           var cropList = $('#lastCrops');
           if (cropList.children('img').length > 5) {
