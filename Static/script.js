@@ -11,6 +11,7 @@ $(document).ready(function() {
   function initCropper(img, aspectRatio) {
     return new Cropper(img, {
       aspectRatio: aspectRatio,
+      viewMode: 1
     });
   }
 
