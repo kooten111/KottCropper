@@ -18,7 +18,7 @@ Download the repo
 
     git clone https://github.com/kooten111/KottCropper
 
-Go to \Static\images and put the images you want to crop there. 
+Go to \images and put the images you want to crop there. 
 
 Run the app
     
@@ -26,10 +26,7 @@ Run the app
 
 Go to `localhost:5000` in your browser and start cropping.
 
-Your cropped images will be in \Static\cropped_images\cropped
-
-## Todo
-- [X] Flipping the aspect ratio does not work as intended
+Your cropped images will be in \cropped_images
 
 ## Credit
 https://github.com/fengyuanchen/cropperjs I basically just used this library and made a simple flask app around it.
