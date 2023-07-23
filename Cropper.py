@@ -1,5 +1,6 @@
 # Flask Code
 from flask import Flask, request, render_template, jsonify, send_from_directory
+import urllib.parse
 from PIL import Image
 import os
 import base64
@@ -17,6 +18,10 @@ if not os.path.exists(image_files_directory):
 
 if not os.path.exists(cropped_image_files_directory):
     os.makedirs(cropped_image_files_directory)
+
+def url_friendly(filename):
+    filename = urllib.parse.quote_plus(filename)
+    return filename
 
 @app.route('/', methods=['GET'])
 def display_image():
@@ -51,8 +56,8 @@ def crop_image():
         counter += 1
 
     image.save(new_filepath, "PNG")
-
-    return jsonify({'status': 'success', 'message': 'Image cropped and saved successfully.', 'new_filename': new_filename})
+    safe_filename = url_friendly(new_filename)
+    return jsonify({'status': 'success', 'message': 'Image cropped and saved successfully.', 'new_filename': safe_filename})
 
 if __name__ == "__main__":
     app.run(debug=True)
