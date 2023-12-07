@@ -1,1 +1,1 @@
-python Cropper.py
+python cropper.py
