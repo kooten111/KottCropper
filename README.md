@@ -5,7 +5,7 @@ A simple tool for cropping images to a specific aspect ratio, useful for croppin
 
 Birme.net lacks the ability to crop only specific parts of an image, so I made this tool to do that.
 
-![Screenshot](Readme/example_img.png)
+![Screenshot](readme/example_img.png)
 
   
 
